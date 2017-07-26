@@ -1,6 +1,6 @@
 var mongo = require('./mongo.js');
-var dao = require('./dao.js');
+var createModel = require('./createModel.js');
 
-mongo.dao = dao;
+mongo.createModel = createModel;
 
 module.exports = mongo;
