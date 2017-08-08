@@ -4,8 +4,9 @@
 
 var mongoose = require('mongoose');
 
-//官方建议说不要用mongoose的Promise，所以这里用nodejs默认的
-mongoose.Promise = Promise;
+//官方建议说不要用mongoose的Promise，nodejs原生的Promise，对UnhandledPromiseRejection的
+//打印不详细，它没有具体到哪个文件哪行写错了
+mongoose.Promise = require('bluebird');
 
 var mongo = module.exports;
 var connections = {};
@@ -25,7 +26,7 @@ mongo.connect = function(name, uri, config, cb){
         cb(null, con);
     }, function(err){
         cb(err);
-    })
+    });
 }
 
 /**
